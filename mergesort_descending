@@ -1,0 +1,38 @@
+n = int(input())
+li = []
+for i in range(n):
+    a = input().split()
+    li.append(a)
+for i in range(n):
+    li[i][0] = int(li[i][0])
+def merge(A):
+    if len(A) <=1 :
+        return A
+    mid = len(A)//2
+    left = merge(A[:mid])
+    right = merge(A[mid:])
+    
+    answer = []
+    low = 0
+    high = 0
+    while low < len(left) and high < len(right):
+        if left[low][0] < right[high][0]:
+            answer.append(right[high])
+            high += 1
+            
+        else:
+            answer.append(left[low])
+            low += 1
+    
+    answer += right[high:]
+    answer += left[low:]
+    
+    
+    return answer
+tmp = ""
+for i in range(n):
+    tmp += str(merge(li)[i][0])
+    tmp += " "
+    tmp += merge(li)[i][1]
+    tmp += "\n"
+print(tmp)
