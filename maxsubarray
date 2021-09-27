@@ -1,0 +1,18 @@
+def maxSubArraySum(arr):
+    max_ = arr[0]
+    tmp = 0
+
+    for i in range(0, len(arr)):
+        tmp = tmp + arr[i]
+
+        if max_ < tmp:
+            max_ = tmp
+
+        if tmp < 0:
+            tmp = 0
+
+    return max_
+
+
+arr = [-50,-41,-31,-14,91,64,-35,84,-51,-63]
+print("Maximum Sub Array Sum Is", maxSubArraySum(arr))
