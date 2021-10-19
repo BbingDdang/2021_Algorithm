@@ -1,0 +1,32 @@
+def maxheapify(arr,idx,n):
+    largest = idx
+    l = 2*idx + 1
+    r = 2*idx + 2
+    if l < n and arr[l] > arr[largest]:
+        largest = l
+    if r < n and arr[r] > arr[largest]:
+        largest = r
+    if largest != idx:
+        arr[largest], arr[idx] = arr[idx], arr[largest]
+        maxheapify(arr,largest,n)
+
+def buildmaxheap(arr,n):
+    for i in range(n//2 - 1, -1, -1):
+        maxheapify(arr,i,n)
+
+
+def heapsort(arr,k):
+    n = len(arr)
+    buildmaxheap(arr,n)
+    for i in range(n-1,0,-1):
+        if k == n:
+            return arr
+        arr[0],arr[i] = arr[i],arr[0]
+        maxheapify(arr,0,i)
+        if i == k:
+            return arr
+    return arr
+
+def solution(a, k):
+    answer = heapsort(a,k)
+    return answer
